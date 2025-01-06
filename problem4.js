@@ -1,23 +1,21 @@
 function programmingLanguage(users) {
-    let language = {};
+    let userLanguage = {};
 
-    for(let user in users) {
-        let details = users[user];
-        let desgination = details.desgination;
+    for (let user in users) {
+        let desgination = users[user].desgination;
 
-        desgination = desgination.split(" ");
+        desgination = desgination.split(" ").map(value => value.trim());
 
-        for(let lan of desgination) {
-            lan = lan.trim();
-
-            if(lan == "Golang" || lan == "Javascript" || lan == "Python"){
-                if(language[lan] == undefined) {
-                    language[lan] = [];
+        for (let lan of desgination) {
+            if (lan == "Golang" || lan == "Javascript" || lan == "Python") {
+                if (userLanguage[lan] == undefined) {
+                    userLanguage[lan] = [];
                 }
-                language[lan].push(details);
+                userLanguage[lan].push(users[user]);
             }
         }
+
     }
-    return language;
+    return userLanguage;
 }
 module.exports = programmingLanguage;
